@@ -9,8 +9,8 @@ const CustomSvg = styled(SVG)`
   max-width: 100%;
   min-width: ${props => (props.width ? `${props.width}px` : 'auto')};
   flex: 0 0 ${props => props.width || 16}px;
-  ${props => (props.fill ? `fill: ${props.theme.colors[props.fill]};` : 'fill: none;')}
-  ${props => (props.stroke ? `stroke: ${props.theme.colors[props.stroke]};` : '')}
+  ${props => (props.fill ? `fill: ${props.fill};` : 'fill: none;')}
+  ${props => (props.stroke ? `stroke: ${props.stroke};` : '')}
 `;
 
 export const SvgIcon = (props: SvgIconProps) => {
