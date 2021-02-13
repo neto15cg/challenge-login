@@ -1,8 +1,7 @@
 import React, { forwardRef } from 'react';
+import SvgIcon from '../svgIcon/SvgIcon';
 import { ErrorIconContainer, InputContainer, InputError, InputField, StyledInput, StyledLabel } from './Input.styles';
 import { InputProps } from './Input.types';
-//@ts-ignore
-import CloseIcon from '../../public/assets/close-icon.svg';
 
 const Input = (props: InputProps, ref) => {
   const { label, error, id, testId, type, ...otherProps } = props;
@@ -15,7 +14,7 @@ const Input = (props: InputProps, ref) => {
         <StyledInput data-testid={testId} id={id} type={type ?? 'text'} ref={ref} error={error} {...otherProps} />
         {error && (
           <ErrorIconContainer>
-            <CloseIcon />
+            <SvgIcon src="/assets/close-icon.svg" />
           </ErrorIconContainer>
         )}
       </InputContainer>

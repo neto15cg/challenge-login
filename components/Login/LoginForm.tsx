@@ -9,17 +9,18 @@ import { LoginDataTypes } from './Login.types';
 
 export const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const { register, handleSubmit, errors } = useForm({ mode: 'onChange' });
+  const { register, handleSubmit, errors, reset } = useForm({ mode: 'onChange' });
 
   const handleLogin = async (data: LoginDataTypes) => {
     try {
       setIsLoading(true);
       await Axios.post('https://60283795dd4afd001754b197.mockapi.io/login', data);
+      setIsLoading(false);
+      reset({ username: '', password: '' });
       alert('Sucesso ao entrar');
-      setIsLoading(false);
     } catch {
-      alert('Desculpe, não foi possível entrar');
       setIsLoading(false);
+      alert('Desculpe, não foi possível entrar');
     }
   };
 
