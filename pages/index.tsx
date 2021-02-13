@@ -1,18 +1,20 @@
 import React from 'react';
-import Button from '../components/button/Button';
-import Input from '../components/input/Input';
+import Login from '../components/Login/Login';
+import Head from 'next/head';
 
-const Login = () => (
-  <div>
-    <Button type="button" loading={false} onClick={() => console.log('CLICADO')}>
-      Botão
-    </Button>
-    <br />
-    <br />
-    <br />
-    <br />
-    <Input type="email" name="username" label="EMAIL" error="Email inválido" />
-  </div>
+const LoginPage = () => (
+  <>
+    <Head>
+      <title>Challenge Login</title>
+      <meta name="Description" content="Challenge Login" />
+      <meta name="robots" content="index, follow" />
+      <link rel="canonical" href="#" />
+      <link rel="amphtml" href="#" />
+    </Head>
+    <main>
+      <Login />
+    </main>
+  </>
 );
 
-export default Login;
+export default LoginPage;
