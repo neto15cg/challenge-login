@@ -9,6 +9,7 @@
     "test": "TZ=America/SAO_Paulo NODE_ICU_DATA=node_modules/full-icu jest --ci -w=2"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "next": "latest",
     "next-redux-wrapper": "^6.0.2",

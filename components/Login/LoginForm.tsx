@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import Axios from 'axios';
 import Button from '../button/Button';
 import Input from '../input/Input';
 
 import { ActionsContainer, ButtonContainer, ForgetPassword, LoginWrapper, WelcomeSubTitle, WelcomeTitle } from './Login.styles';
+import { LoginDataTypes } from './Login.types';
 
 export const LoginForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit, errors } = useForm({ mode: 'onChange' });
-  const onSubmit = data => console.log('---->', data);
+
+  const handleLogin = async (data: LoginDataTypes) => {
+    try {
+      setIsLoading(true);
+      await Axios.post('https://60283795dd4afd001754b197.mockapi.io/login', data);
+      alert('Sucesso ao entrar');
+      setIsLoading(false);
+    } catch {
+      alert('Desculpe, não foi possível entrar');
+      setIsLoading(false);
+    }
+  };
+
+  const onSubmit = data => handleLogin(data);
 
   const handleValidateEmail = (value: string) => {
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -38,7 +54,9 @@ export const LoginForm = () => {
         <Input label="SENHA" type="password" name="password" error={errors?.password?.message} ref={register({ required: 'Campo obrigatório' })} />
         <ActionsContainer>
           <ButtonContainer>
-            <Button type="submit">ENTRAR</Button>
+            <Button loading={isLoading} type="submit">
+              ENTRAR
+            </Button>
           </ButtonContainer>
           <ForgetPassword>
             <span>Esqueceu seu login ou senha?</span>
