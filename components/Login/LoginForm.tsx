@@ -7,7 +7,7 @@ import { ActionsContainer, ButtonContainer, ForgetPassword, LoginWrapper, Welcom
 
 export const LoginForm = () => {
   const { register, handleSubmit, errors } = useForm({ mode: 'onChange' });
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => console.log('---->', data);
 
   const handleValidateEmail = (value: string) => {
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

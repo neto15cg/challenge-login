@@ -96,6 +96,7 @@ export const WelcomeTitle = styled.h1`
   font-size: 40px;
   line-height: 48px;
   color: #383e71;
+  margin: 0;
 
   ${device.mobile} {
     width: 140px;
@@ -106,7 +107,7 @@ export const WelcomeTitle = styled.h1`
 `;
 
 export const WelcomeSubTitle = styled.h2`
-  margin: 16px 0 27px 0;
+  margin: 16px 0 34px 0;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;

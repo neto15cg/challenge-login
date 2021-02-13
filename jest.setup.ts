@@ -18,8 +18,7 @@ document.body.appendChild(react);
   matches: false,
   removeListener: () => undefined,
 });
-// eslint-disable-next-line
-const consoleError = console.error;
+
 // eslint-disable-next-line
 console.error = jest.fn((...args) => {
   const [error] = args;
