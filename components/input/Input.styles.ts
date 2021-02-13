@@ -30,6 +30,7 @@ export const StyledInput = styled.input`
   font-style: normal;
   font-weight: normal;
   font-family: Montserrat;
+  background-color: transparent;
   color: #383e71;
 
   &:focus {
