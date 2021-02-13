@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const InputField = styled.div`
   max-width: 100%;
+  margin-top: 16px;
 `;
 
 export const StyledLabel = styled.label`
@@ -9,10 +10,11 @@ export const StyledLabel = styled.label`
   align-items: center;
   font-style: normal;
   font-weight: normal;
-  font-size: 1rem;
-  line-height: 48px;
+  font-family: Montserrat;
+  font-size: 10px;
   color: #383e71;
   padding-left: 12px;
+  margin-bottom: 8px;
 `;
 
 export const StyledInput = styled.input`
@@ -23,10 +25,11 @@ export const StyledInput = styled.input`
   border: 1px solid #989fdb;
   box-sizing: border-box;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 10px;
   line-height: 48px;
   font-style: normal;
   font-weight: normal;
+  font-family: Montserrat;
   color: #383e71;
 
   &:focus {
@@ -51,8 +54,18 @@ export const InputError = styled.span`
   font-family: Montserrat;
   font-style: normal;
   font-weight: normal;
-  font-size: 1rem;
-  line-height: 48px;
+  font-size: 10px;
   color: #ff377f;
   padding-left: 12px;
+  margin-top: 8px;
+`;
+
+export const ErrorIconContainer = styled.div`
+  position: absolute;
+  top: 18px;
+  right: 20px;
+`;
+
+export const InputContainer = styled.div`
+  position: relative;
 `;

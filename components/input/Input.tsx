@@ -1,6 +1,8 @@
 import React, { forwardRef } from 'react';
-import { InputError, InputField, StyledInput, StyledLabel } from './Input.styles';
+import { ErrorIconContainer, InputContainer, InputError, InputField, StyledInput, StyledLabel } from './Input.styles';
 import { InputProps } from './Input.types';
+//@ts-ignore
+import CloseIcon from '../../public/assets/close-icon.svg';
 
 const Input = (props: InputProps, ref) => {
   const { label, error, id, testId, type, ...otherProps } = props;
@@ -9,7 +11,14 @@ const Input = (props: InputProps, ref) => {
       <StyledLabel htmlFor={id} error={error}>
         {label}
       </StyledLabel>
-      <StyledInput data-testid={testId} id={id} type={type ?? 'text'} ref={ref} error={error} {...otherProps} />
+      <InputContainer>
+        <StyledInput data-testid={testId} id={id} type={type ?? 'text'} ref={ref} error={error} {...otherProps} />
+        {error && (
+          <ErrorIconContainer>
+            <CloseIcon />
+          </ErrorIconContainer>
+        )}
+      </InputContainer>
       {error && <InputError>{error}</InputError>}
     </InputField>
   );

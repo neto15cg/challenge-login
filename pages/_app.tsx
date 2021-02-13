@@ -1,5 +1,4 @@
-import { ReactChild, ReactFragment } from "react";
-import { wrapper } from "../store/store";
+import { wrapper } from '../store/store';
 
 export interface AppProps {
   Component: any;

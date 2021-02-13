@@ -22,8 +22,9 @@ export const StyledButton = styled.button`
   outline: none;
   border-radius: 8px;
   box-shadow: 0px 10px 25px ${BUTTON_COLORS.lightPurple};
-  transition: background 250ms ease-out;
   cursor: pointer;
+  transition: background 250ms, background-color 250ms ease-in-out;
+  background-color: ${lighten(0.005, BUTTON_COLORS.darkPurple)};
 
   &:hover {
     background: ${darken(0.005, BUTTON_COLORS.darkPurple)} radial-gradient(circle, transparent 1%, ${darken(0.005, BUTTON_COLORS.darkPurple)} 1%) center/15000%;
