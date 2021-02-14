@@ -15,11 +15,9 @@ export const Login = ({ onLogin, loading, isSuccess }: LoginProps) => {
     if (!value) {
       return 'Campo obrigatório';
     }
-
     if (!validateEmail(value)) {
       return 'Digite um e-email válido';
     }
-
     return undefined;
   };
 

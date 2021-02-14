@@ -36,6 +36,7 @@ const LoginPage = () => {
       handleError();
     }
   }, [error]);
+
   return (
     <>
       <Head>
