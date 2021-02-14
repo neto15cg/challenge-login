@@ -1,14 +1,10 @@
-export const actionTypes = {
-  LOGIN_START: 'LOGIN_START',
-  LOGIN_SUCCESS: 'LOGIN_SUCCESS',
-  LOGIN_FAILURE: 'LOGIN_FAILURE',
-  CLEAR_STATE: 'CLEAR_STATE',
-};
+import { LoginDataTypes } from '../components/Login/Login.types';
+import { actionTypes, LoginResponseTypes } from './store.types';
 
 export function failure(error) {
   return {
     type: actionTypes.LOGIN_FAILURE,
-    error,
+    payload: error,
   };
 }
 
@@ -18,13 +14,13 @@ export function clearState() {
   };
 }
 
-export function loadData(data) {
+export function doLogin(data: LoginDataTypes) {
   return { type: actionTypes.LOGIN_START, payload: data };
 }
 
-export function loadDataSuccess(data) {
+export function doLoginSuccess(data: LoginResponseTypes) {
   return {
     type: actionTypes.LOGIN_SUCCESS,
-    data,
+    payload: data,
   };
 }

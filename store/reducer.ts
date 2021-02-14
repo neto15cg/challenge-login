@@ -1,19 +1,19 @@
-import { actionTypes } from './actions';
 import { HYDRATE } from 'next-redux-wrapper';
+import { LoginResponseTypes, ActionDataType, actionTypes } from './store.types';
 
 export interface LoginStateProps {
   loading: boolean;
   error: unknown;
-  login: any;
+  login?: LoginResponseTypes;
 }
 
 const initialState: LoginStateProps = {
   loading: false,
   error: false,
-  login: null,
+  login: undefined,
 };
 
-function reducer(state, action) {
+function reducer(state: LoginStateProps, action: ActionDataType) {
   switch (action.type) {
     case HYDRATE: {
       return { ...state, ...action.payload };
@@ -26,18 +26,17 @@ function reducer(state, action) {
     case actionTypes.LOGIN_SUCCESS:
       return {
         ...state,
-        ...{ login: action.data },
+        ...{ login: action.payload },
         loading: false,
       };
     case actionTypes.LOGIN_FAILURE:
       return {
         ...state,
-        ...{ error: action.error },
+        ...{ error: action.payload },
         loading: false,
       };
     case actionTypes.CLEAR_STATE:
       return { ...initialState };
-
     default:
       return state;
   }
