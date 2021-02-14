@@ -6,7 +6,7 @@ import Input from '../input/Input';
 import { ActionsContainer, ButtonContainer, ForgetPassword, LoginWrapper, WelcomeSubTitle, WelcomeTitle } from './Login.styles';
 import { validateEmail } from '../../utils/validators';
 import LoginContainer from './LoginContainer';
-import { LoginProps } from './Login.types';
+import { LoginDataTypes, LoginProps } from './Login.types';
 
 export const Login = ({ onLogin, loading, isSuccess }: LoginProps) => {
   const { register, handleSubmit, errors, reset } = useForm({ mode: 'onChange' });
@@ -29,7 +29,7 @@ export const Login = ({ onLogin, loading, isSuccess }: LoginProps) => {
     }
   }, [isSuccess]);
 
-  const onSubmit = data => onLogin(data);
+  const onSubmit = (data: LoginDataTypes) => onLogin(data);
 
   return (
     <LoginContainer>
@@ -42,9 +42,17 @@ export const Login = ({ onLogin, loading, isSuccess }: LoginProps) => {
             error={errors?.username?.message}
             type="text"
             name="username"
+            id="username"
             ref={register({ required: 'Campo obrigatório', validate: handleValidateEmail })}
           />
-          <Input label="SENHA" type="password" name="password" error={errors?.password?.message} ref={register({ required: 'Campo obrigatório' })} />
+          <Input
+            label="SENHA"
+            type="password"
+            name="password"
+            error={errors?.password?.message}
+            id="password"
+            ref={register({ required: 'Campo obrigatório' })}
+          />
           <ActionsContainer>
             <ButtonContainer>
               <Button loading={loading} type="submit">

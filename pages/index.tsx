@@ -16,12 +16,12 @@ const LoginPage = () => {
     dispatch(doLogin(data));
   };
   const handleSuccess = () => {
-    alert('Sucesso ao entrar');
+    alert(`Sucesso ao entrar com ${loginData?.username}`);
     dispatch(clearState());
   };
 
   const handleError = () => {
-    alert('Erro ao entrar');
+    alert(`Erro ao entrar`);
     dispatch(clearState());
   };
 
