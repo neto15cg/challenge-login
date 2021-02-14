@@ -6,6 +6,7 @@ import Input from '../input/Input';
 
 import { ActionsContainer, ButtonContainer, ForgetPassword, LoginWrapper, WelcomeSubTitle, WelcomeTitle } from './Login.styles';
 import { LoginDataTypes } from './Login.types';
+import { validateEmail } from '../../utils/validators';
 
 export const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -26,20 +27,6 @@ export const LoginForm = () => {
 
   const onSubmit = data => handleLogin(data);
 
-  const handleValidateEmail = (value: string) => {
-    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    if (!value) {
-      return 'Campo obrigatório';
-    }
-
-    if (!emailRegex.test(String(value).toLowerCase())) {
-      return 'Digite um e-email válido';
-    }
-
-    return undefined;
-  };
-
   return (
     <LoginWrapper>
       <WelcomeTitle>Olá, seja bem-vindo!</WelcomeTitle>
@@ -50,7 +37,7 @@ export const LoginForm = () => {
           error={errors?.username?.message}
           type="text"
           name="username"
-          ref={register({ required: 'Campo obrigatório', validate: handleValidateEmail })}
+          ref={register({ required: 'Campo obrigatório', validate: validateEmail })}
         />
         <Input label="SENHA" type="password" name="password" error={errors?.password?.message} ref={register({ required: 'Campo obrigatório' })} />
         <ActionsContainer>
