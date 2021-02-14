@@ -132,7 +132,7 @@ export const ActionsContainer = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-  margin: 43px 0 32px 0;
+  margin: 24px 0 32px 0;
 `;
 
 export const ForgetPassword = styled.div`
