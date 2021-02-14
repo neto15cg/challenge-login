@@ -34,7 +34,6 @@ export const Illustration = styled.div`
     bottom: 0;
     right: 0;
     background: linear-gradient(180deg, #130525 0%, rgba(105, 57, 153, 0) 100%);
-    transform: rotate(-180deg);
     transform: rotate(180deg);
     z-index: -1;
   }
