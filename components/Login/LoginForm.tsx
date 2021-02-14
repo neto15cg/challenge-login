@@ -26,9 +26,11 @@ export const LoginForm = () => {
       return 'Campo obrigatório';
     }
 
-    if (!validateEmail) {
+    if (!validateEmail(value)) {
       return 'Digite um e-email válido';
     }
+
+    return undefined;
   };
 
   const handleSuccess = () => {
