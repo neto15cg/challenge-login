@@ -25,6 +25,7 @@ export const Illustration = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 0.99;
+  transition: width 250ms ease;
 
   &::after {
     content: '';
