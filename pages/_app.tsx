@@ -1,11 +1,6 @@
 import { wrapper } from '../store/store';
 
-export interface AppProps {
-  Component: any;
-  pageProps: any;
-}
-
-function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: any) {
   return <Component {...pageProps} />;
 }
 

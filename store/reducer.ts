@@ -1,55 +1,42 @@
-import { actionTypes } from "./actions";
-import { HYDRATE } from "next-redux-wrapper";
+import { actionTypes } from './actions';
+import { HYDRATE } from 'next-redux-wrapper';
 
-const initialState = {
-  count: 0,
+export interface LoginStateProps {
+  loading: boolean;
+  error: unknown;
+  login: any;
+}
+
+const initialState: LoginStateProps = {
+  loading: false,
   error: false,
-  lastUpdate: 0,
-  light: false,
-  placeholderData: null,
+  login: null,
 };
 
-function reducer(state: any, action: any) {
+function reducer(state, action) {
   switch (action.type) {
     case HYDRATE: {
       return { ...state, ...action.payload };
     }
-
-    case actionTypes.FAILURE:
+    case actionTypes.LOGIN_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case actionTypes.LOGIN_SUCCESS:
+      return {
+        ...state,
+        ...{ login: action.data },
+        loading: false,
+      };
+    case actionTypes.LOGIN_FAILURE:
       return {
         ...state,
         ...{ error: action.error },
+        loading: false,
       };
-
-    case actionTypes.INCREMENT:
-      return {
-        ...state,
-        ...{ count: state.count + 1 },
-      };
-
-    case actionTypes.DECREMENT:
-      return {
-        ...state,
-        ...{ count: state.count - 1 },
-      };
-
-    case actionTypes.RESET:
-      return {
-        ...state,
-        ...{ count: initialState.count },
-      };
-
-    case actionTypes.LOAD_DATA_SUCCESS:
-      return {
-        ...state,
-        ...{ placeholderData: action.data },
-      };
-
-    case actionTypes.TICK_CLOCK:
-      return {
-        ...state,
-        ...{ lastUpdate: action.ts, light: !!action.light },
-      };
+    case actionTypes.CLEAR_STATE:
+      return { ...initialState };
 
     default:
       return state;

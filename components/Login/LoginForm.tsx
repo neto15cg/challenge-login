@@ -1,29 +1,58 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import Axios from 'axios';
 import Button from '../button/Button';
 import Input from '../input/Input';
 
 import { ActionsContainer, ButtonContainer, ForgetPassword, LoginWrapper, WelcomeSubTitle, WelcomeTitle } from './Login.styles';
 import { LoginDataTypes } from './Login.types';
 import { validateEmail } from '../../utils/validators';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearState, loadData } from '../../store/actions';
+import { LoginStateProps } from '../../store/reducer';
 
 export const LoginForm = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit, errors, reset } = useForm({ mode: 'onChange' });
+  const dispatch = useDispatch();
+  const loginData = useSelector((state: LoginStateProps) => state?.login);
+  const loading = useSelector((state: LoginStateProps) => state?.loading);
+  const error = useSelector((state: LoginStateProps) => state?.error);
 
   const handleLogin = async (data: LoginDataTypes) => {
-    try {
-      setIsLoading(true);
-      await Axios.post('https://60283795dd4afd001754b197.mockapi.io/login', data);
-      setIsLoading(false);
-      reset({ username: '', password: '' });
-      alert('Sucesso ao entrar');
-    } catch {
-      setIsLoading(false);
-      alert('Desculpe, não foi possível entrar');
+    dispatch(loadData(data));
+  };
+
+  const handleValidateEmail = (value: string) => {
+    if (!value) {
+      return 'Campo obrigatório';
+    }
+
+    if (!validateEmail) {
+      return 'Digite um e-email válido';
     }
   };
+
+  const handleSuccess = () => {
+    reset({ username: '', password: '' });
+    alert('Sucesso ao entrar');
+    dispatch(clearState());
+  };
+
+  const handleError = () => {
+    alert('Erro ao entrar');
+    dispatch(clearState());
+  };
+
+  useEffect(() => {
+    if (loginData) {
+      handleSuccess();
+    }
+  }, [loginData]);
+
+  useEffect(() => {
+    if (error) {
+      handleError();
+    }
+  }, [error]);
 
   const onSubmit = data => handleLogin(data);
 
@@ -37,12 +66,12 @@ export const LoginForm = () => {
           error={errors?.username?.message}
           type="text"
           name="username"
-          ref={register({ required: 'Campo obrigatório', validate: validateEmail })}
+          ref={register({ required: 'Campo obrigatório', validate: handleValidateEmail })}
         />
         <Input label="SENHA" type="password" name="password" error={errors?.password?.message} ref={register({ required: 'Campo obrigatório' })} />
         <ActionsContainer>
           <ButtonContainer>
-            <Button loading={isLoading} type="submit">
+            <Button loading={loading} type="submit">
               ENTRAR
             </Button>
           </ButtonContainer>
